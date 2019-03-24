@@ -46,7 +46,7 @@ parameters:
 services:
   monolog.handler.rotating_file:
     class: Monolog\Handler\RotatingFileHandler
-    arguments: ['private://logs/debug.log', 10, 'monolog.level.debug']
+    arguments: ['private://logs/debug.log', 10, '%monolog.level.debug%']
 ```
 
 This configuration will log every message with a log level greater (or equal) than *debug* to a file called
@@ -80,10 +80,10 @@ parameters:
 services:
   monolog.handler.rotating_file_php:
     class: Monolog\Handler\RotatingFileHandler
-    arguments: ['private://logs/php.log', 10, 'monolog.level.debug']
+    arguments: ['private://logs/php.log', 10, '%monolog.level.debug%']
   monolog.handler.rotating_file_all:
     class: Monolog\Handler\RotatingFileHandler
-    arguments: ['private://logs/debug.log', 10, 'monolog.level.debug']
+    arguments: ['private://logs/debug.log', 10, '%monolog.level.debug%']
 ```
 
 The following method:
@@ -116,14 +116,14 @@ Examples
 ```
   monolog.handler.rotating_file_debug:
     class: Monolog\Handler\RotatingFileHandler
-    arguments: ['public://logs/debug.log', 10, 'monolog.level.debug']
+    arguments: ['public://logs/debug.log', 10, '%monolog.level.debug%']
 ```
 
 * SlackHandler: logs to a Slack channel
 ```
   monolog.handler.slack:
     class: Monolog\Handler\SlackHandler
-    arguments: ['slack-token', 'monolog', 'Drupal', true, null, 'monolog.level.error']
+    arguments: ['slack-token', 'monolog', 'Drupal', true, null, '%monolog.level.error%']
 ```
 
 * [FingersCrossedHandler](https://github.com/Seldaek/monolog/blob/master/doc/02-handlers-formatters-processors.md#wrappers--special-handlers)
