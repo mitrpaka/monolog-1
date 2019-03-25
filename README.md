@@ -114,7 +114,13 @@ Log to database
 --------
 
 The Monolog module automatically register an handler for every enabled Drupal logger. To log to the standard
-watchdog table it is possible to enable the Database Logging module and use *drupal.dblog* as handler.
+watchdog table it is possible to enable the Database Logging module and use *drupal.dblog* as handler:
+
+```
+parameters:
+  monolog.channel_handlers:
+    default: ['drupal.dblog']
+```
 
 Examples
 --------
@@ -131,6 +137,14 @@ Examples
   monolog.handler.slack:
     class: Monolog\Handler\SlackHandler
     arguments: ['slack-token', 'monolog', 'Drupal', true, null, '%monolog.level.error%']
+```
+
+* DrupalMailHandler: sends log by mail (use this instead of the Monolog SwiftMailerHandler)
+```
+  monolog.handler.mail:
+    class: Drupal\monolog\Logger\Handler\DrupalMailHandler
+    arguments: ['mail@example.com', 'monolog.level.debug']
+
 ```
 
 * [FingersCrossedHandler](https://github.com/Seldaek/monolog/blob/master/doc/02-handlers-formatters-processors.md#wrappers--special-handlers)
