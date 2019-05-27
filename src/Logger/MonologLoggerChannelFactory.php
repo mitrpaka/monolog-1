@@ -80,7 +80,7 @@ class MonologLoggerChannelFactory implements LoggerChannelFactoryInterface, Cont
     $parameters = $this->container->getParameter('monolog.channel_handlers');
     $config = array_key_exists($channel_name, $parameters) ? $parameters[$channel_name] : $parameters['default'];
 
-    $formatter = 'line';
+    $formatter = NULL;
     $handlers = $config;
     if (array_key_exists('handlers', $config)) {
       $formatter = $config['formatter'];
@@ -91,7 +91,7 @@ class MonologLoggerChannelFactory implements LoggerChannelFactoryInterface, Cont
       /** @var \Monolog\Handler\HandlerInterface $h */
       $h = $this->container->get('monolog.handler.' . $handler);
 
-      if ($this->container->has('monolog.formatter.' . $formatter)) {
+      if ($formatter && $this->container->has('monolog.formatter.' . $formatter)) {
         /** @var \Monolog\Formatter\FormatterInterface $f */
         $f = $this->container->get('monolog.formatter.' . $formatter);
         $h->setFormatter($f);
