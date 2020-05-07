@@ -1,5 +1,5 @@
 {
-    "name": "drupal/monolog",
+    "name": "wunderio/monolog",
     "type": "drupal-module",
     "description": "A Framework for integrating with the Monolog library.",
     "homepage": "http://drupal.org/project/monolog",
